@@ -1,5 +1,5 @@
 ---
-title: JPA使用记录-1
+title: JPA使用记录-配置
 date: 2022-03-22 17:45:17
 tags: springboot
 ---
