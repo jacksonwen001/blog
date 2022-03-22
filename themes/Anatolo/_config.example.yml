@@ -1,7 +1,7 @@
 # Blog config
 keywords: Blog,博客,Hexo
-author: Jackson
-description: Simple Blog
+author: Yourname
+description: A simple and beautiful blog
 
 # icon
 # 如果尺寸不当请修改style.css和style.scss
@@ -31,9 +31,9 @@ footbar:
 
 # Social Links
 # If you want to add more, go to sidebar.pug
-github: https://github.com/jacksonwen001
-mail: jacksonwen001@gmail.com
-zhihu: 
+github: https://github.com/Lhcfl
+mail: yourname@example.com
+zhihu: https://zhihu.com/people/jin-xin-4-68
 QQ: 
 twitter:
 instagram:
@@ -81,6 +81,6 @@ valine:
 
 # 百度统计设置
 # 请访问 https://tongji.baidu.com/ 
-# 获取统计JS代码放入 Anatolo/ /js/baidu-tongji.js
+# 获取统计JS代码放入 Anatolo/source/js/baidu-tongji.js
 
 Baidutongji: false

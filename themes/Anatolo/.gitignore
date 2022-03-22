@@ -1,12 +1,1 @@
-<<<<<<< HEAD
-.DS_Store
-Thumbs.db
-db.json
-*.log
-node_modules/
-public/
-.deploy*/
-_multiconfig.yml
-=======
 _config.yml
->>>>>>> adb0862 (remove .git in themes)
