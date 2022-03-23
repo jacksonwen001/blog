@@ -1,3 +1,6 @@
 [submodule "themes/Anatolo"]
 	path = themes/Anatolo
 	url = https://github.com/Lhcfl/hexo-theme-anatolo.git
+[submodule "themes/Anatoloa"]
+	path = themes/Anatoloa
+	url = https://github.com/Lhcfl/hexo-theme-anatolo.git
