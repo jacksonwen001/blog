@@ -19,7 +19,7 @@ docker network create jenkins
 
 ## 挂载 docker
 ```shell
-docker run --name jenkins-docker --rm --detach \
+docker run --name jenkins-docker --restart=always --detach \
   --privileged --network jenkins --network-alias docker \
   --env DOCKER_TLS_CERTDIR=/certs \
   --volume jenkins-docker-certs:/certs/client \
