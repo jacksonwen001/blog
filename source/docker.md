@@ -22,6 +22,61 @@ docker run --name jenkins-blueocean --restart=always --detach ^
   --privileged=true -u root ^
   --publish 8888:8080 --publish 50000:50000 jenkinsci/blueocean
 ```
+### Linux 
+先创建 docker:dind
+```shell
+docker run \
+  --name jenkins-docker \
+  --rm \
+  --detach \
+  --privileged \
+  --network jenkins \
+  --network-alias docker \
+  --env DOCKER_TLS_CERTDIR=/certs \
+  --volume jenkins-docker-certs:/certs/client \
+  --volume /data/jenkins/jenkins_home:/var/jenkins_home \
+  --publish 2376:2376 \
+  docker:dind \
+  --storage-driver overlay2
+```
+然后创建 Dockerfile
+```Dockerfile
+FROM jenkins/jenkins:2.332.2-jdk11
+USER root
+RUN apt-get update && apt-get install -y lsb-release
+RUN curl -fsSLo /usr/share/keyrings/docker-archive-keyring.asc \
+  https://download.docker.com/linux/debian/gpg
+RUN echo "deb [arch=$(dpkg --print-architecture) \
+  signed-by=/usr/share/keyrings/docker-archive-keyring.asc] \
+  https://download.docker.com/linux/debian \
+  $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
+RUN apt-get update && apt-get install -y docker-ce-cli
+USER jenkins
+RUN jenkins-plugin-cli --plugins "blueocean:1.25.3 docker-workflow:1.28"
+```
+
+build 出镜像
+```shell
+docker build -t jenkins:1.0 .
+```
+
+最后执行
+```shell
+docker run \
+  --name jenkins-blueocean \
+  --rm \
+  --detach \
+  --network jenkins \
+  --env DOCKER_HOST=tcp://docker:2376 \
+  --env DOCKER_CERT_PATH=/certs/client \
+  --env DOCKER_TLS_VERIFY=1 \
+  --publish 8080:8080 \
+  --publish 50000:50000 \
+  --volume /data/jenkins/jenkins_home:/var/jenkins_home \
+  --volume jenkins-docker-certs:/certs/client:ro \
+  myjenkins-blueocean:2.332.2-1 
+```
+[参考链接： Install Docker In Jenkins](https://www.jenkins.io/doc/book/installing/docker/)
 
 # MYSQL:8.0
 ## mac

@@ -48,7 +48,8 @@ menu:
   Tags: /tags
   About: /about
   Links: /links
-  Cheatsheet: /cheatsheet
+  Docker: /docker
+  BookMark: /bookmark
 
 # Navbar rightbtn
 rightbtn:
